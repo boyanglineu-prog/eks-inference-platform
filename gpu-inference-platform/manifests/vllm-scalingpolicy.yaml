@@ -1,0 +1,10 @@
+apiVersion: autoscaling.example.com/v1alpha1
+kind: ScalingPolicy
+metadata:
+  name: vllm-scaler
+  namespace: default
+spec:
+  targetDeployment: vllm-inference
+  minReplicas: 1
+  maxReplicas: 2
+  queueDepthThreshold: 5

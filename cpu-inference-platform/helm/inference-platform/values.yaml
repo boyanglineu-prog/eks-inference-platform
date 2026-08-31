@@ -1,0 +1,31 @@
+# helm/inference-platform/values.yaml
+
+# container image
+image:
+  repository: 454518197798.dkr.ecr.us-west-2.amazonaws.com/inference-platform
+  tag: latest
+  pullPolicy: Always
+
+# number of pods
+replicaCount: 2
+
+# resource allocation per pod
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "500m"
+  limits:
+    memory: "2Gi"
+    cpu: "1000m"
+
+# autoscaling
+autoscaling:
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilization: 70
+
+# service
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000

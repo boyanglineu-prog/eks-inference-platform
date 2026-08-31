@@ -1,0 +1,30 @@
+# templates/deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inference-platform
+  labels:
+    app: inference-platform
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: inference-platform
+  template:
+    metadata:
+      labels:
+        app: inference-platform
+    spec:
+      containers:
+        - name: inference-api
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              memory: "{{ .Values.resources.requests.memory }}"
+              cpu: "{{ .Values.resources.requests.cpu }}"
+            limits:
+              memory: "{{ .Values.resources.limits.memory }}"
+              cpu: "{{ .Values.resources.limits.cpu }}"

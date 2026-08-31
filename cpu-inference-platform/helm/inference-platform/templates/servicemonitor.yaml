@@ -1,0 +1,19 @@
+# templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: inference-platform
+  namespace: monitoring
+  labels:
+    release: monitoring # must match kube-prometheus-stack release name
+spec:
+  namespaceSelector:
+    matchNames:
+      - default # your app is in default namespace
+  selector:
+    matchLabels:
+      app: inference-platform # matches your service label
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s

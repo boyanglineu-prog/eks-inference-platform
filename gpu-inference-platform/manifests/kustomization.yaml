@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Standing infrastructure for the GPU stack — applied together as one unit.
+#
+# Deliberately NOT included here:
+#   - vllm-scalingpolicy.yaml — a runtime CRD instance, applied separately, after
+#     the scaler-controller exists and can react to it (different lifecycle stage).
+#   - gpu-smoke-test.yaml — a one-off nvidia-smi debug pod, not part of the
+#     standing stack at all.
+resources:
+  - vllm-deployment.yaml
+  - vllm-servicemonitor.yaml
+  - dcgm-exporter.yaml

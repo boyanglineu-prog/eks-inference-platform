@@ -1,0 +1,30 @@
+# templates/ingress.yml
+# Ingress is the entry point from the internet into your cluster. It provisions an AWS ALB automatically and defines which URL paths route to which Services.
+
+# API version and resource type
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+# identity
+metadata:
+  name: inference-platform
+  annotations:
+    # tells Kubernetes to use AWS ALB as the ingress controller
+    kubernetes.io/ingress.class: alb
+    # internet-facing — accessible from outside
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # use IP mode for routing
+    alb.ingress.kubernetes.io/target-type: ip
+
+# routing rules
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: inference-platform # routes to our Service
+                port:
+                  number: 80

@@ -1,0 +1,9 @@
+apiVersion: autoscaling.example.com/v1alpha1
+kind: ScalingPolicy
+metadata:
+  labels:
+    app.kubernetes.io/name: scaler-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: scalingpolicy-sample
+spec:
+  # TODO(user): Add fields here

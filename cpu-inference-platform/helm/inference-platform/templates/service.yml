@@ -1,0 +1,28 @@
+# templates/service.yaml
+# service.yaml solves one problem — pods have unstable IPs.
+# A stable endpoint in front of your pods.
+
+# API version and resource type
+apiVersion: v1
+kind: Service
+
+# identity of this service
+metadata:
+  name: inference-platform
+  labels:
+    app: inference-platform
+
+# desired state
+spec:
+  # which pods to route traffic to
+  selector:
+    app: inference-platform # matches deployment pod labels
+
+  # port mapping
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80 # service listens on port 80
+      targetPort: 8000 # forwards to container port 8000
+    # service type
+  type: ClusterIP # internal only — only reachable within the cluster

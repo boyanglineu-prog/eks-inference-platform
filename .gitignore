@@ -1,0 +1,19 @@
+# Personal working logs — not meant for the public repo, consistent with how
+# this project has always treated these (see cpu-inference-platform's original
+# .gitignore)
+**/memo.md
+
+# Sensitive / environment-specific
+**/iam_policy.json
+**/.DS_Store
+**/.env
+
+# Python
+.venv/
+**/__pycache__/
+*.pyc
+
+# Go build artifacts / downloaded tooling (regenerable via `make manifests`,
+# `make build`, etc. — see gpu-inference-platform/scaler-controller/Makefile)
+gpu-inference-platform/scaler-controller/bin/
+gpu-inference-platform/scaler-controller/cover.out

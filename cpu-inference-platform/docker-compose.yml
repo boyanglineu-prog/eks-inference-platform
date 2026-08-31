@@ -1,0 +1,17 @@
+# docker-compose.yml
+
+services:
+  # defines all containers in this stack
+
+  inference-api:
+    # container name + internal hostname
+
+    build:
+      context: . # build context = project root
+      dockerfile: docker/Dockerfile # path to Dockerfile
+
+    ports:
+      - "8000:8000" # host:container exoses API locally
+
+    environment:
+      - PYTHONUNBUFFERED=1 # show Python logs immediately, no bufferingp

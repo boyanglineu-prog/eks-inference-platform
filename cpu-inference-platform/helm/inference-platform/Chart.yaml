@@ -1,0 +1,8 @@
+# helm/inference-platform/Chart.yaml
+
+apiVersion: v2
+name: inference-platform
+description: ML inference service on AWS EKS
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
