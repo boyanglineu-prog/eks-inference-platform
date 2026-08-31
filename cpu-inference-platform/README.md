@@ -153,7 +153,7 @@ aws configure
 
 ```bash
 git clone https://github.com/boyanglineu-prog/eks-inference-platform
-cd eks-inference-platform
+cd eks-inference-platform/cpu-inference-platform
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
