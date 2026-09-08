@@ -1,13 +1,21 @@
-# .github/workflows/deploy.yml
-name: Build and Deploy
+name: "CPU Stack: Build and Deploy"
 
+# Scoped to only trigger on changes under cpu-inference-platform/, or to this
+# workflow file itself -- monorepo pattern, keeps this from firing on unrelated
+# Go/controller changes.
 on:
   push:
-    branches: [main] # trigger on every push to main
+    branches: [main]
+    paths:
+      - "cpu-inference-platform/**"
+      - ".github/workflows/cpu-deploy.yml"
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # GitHub's Linux runner
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cpu-inference-platform
 
     steps:
       # 1. checkout code
